@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Button from "./button";
-import { getTextColor } from "../utils/colorUtils.tsx";
+import { getTextColor } from "../utils/colorUtils";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 
 
@@ -25,7 +25,7 @@ const Navbar: React.FC = () => {
       <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2">
         <div className="flex space-x-3">
           <Button nextSectionId="hero">hero</Button>
-          <Button nextSectionId="about">about</Button>
+          <Button nextSectionId="Experiences">Experiences</Button>
           <Button nextSectionId="skills">skills</Button>
         </div>
       </div>

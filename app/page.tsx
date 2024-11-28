@@ -2,6 +2,8 @@
 import Navbar from "./components/Navbar";
 import Button from "./components/button";
 import ChatBot from "./components/ChatBot";
+import ExperienceSection from "./components/ExperienceSection";
+
 import FullPageSection from "./components/full-page-section";
 import { getTextColor } from "./utils/colorUtils";
 import { Github, Linkedin, Download } from "lucide-react";
@@ -61,13 +63,12 @@ function App() {
       </FullPageSection>
 
       <FullPageSection
-        id="about"
+        id="Experiences"
         bgColor="background_2"
         textColor={getTextColor("bg-emerald-100")}
       >
         <div className="text-center space-y-4">
-          <h2 className="text-3xl font-bold">About Me</h2>
-          <p className="text-lg">well well</p>
+          <ExperienceSection />
         </div>
       </FullPageSection>
 
