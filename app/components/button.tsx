@@ -1,5 +1,5 @@
 'use client'
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { getTextColor } from "../utils/colorUtils";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 import { LucideIcon } from "lucide-react";
@@ -7,7 +7,7 @@ import { LucideIcon } from "lucide-react";
 interface ButtonProps {
   children?: ReactNode;
   nextSectionId?: string;
-  icon?: LucideIcon;
+  icon?: LucideIcon | string; // Updated to accept string for local path icons
   link?: string;
   className?: string;
 }
@@ -15,7 +15,7 @@ interface ButtonProps {
 export default function Button({
   children,
   nextSectionId,
-  icon: Icon,
+  icon,
   link,
   className = "",
 }: ButtonProps) {
@@ -45,15 +45,19 @@ export default function Button({
   `;
 
   // Icon-only button (for links)
-  if (Icon && !children) {
+  if (icon && !children) {
     return (
       <button
         onClick={handleClick}
-        className={`p-2 border rounded-full ${borderColor} ${baseStyles}`}
+        className={`p-2 border rounded-full ${borderColor} ${baseStyles} ${textColor}`}
       >
-        <Icon
-          className={`w-5 h-5 ${textColor} transition-colors duration-500`}
-        />
+        {typeof icon === "string" ? (
+          <img src={icon} alt="icon" className={`w-5 h-5 ${textColor} ${baseStyles} transition-colors duration-500`} />
+        ) : (
+          React.createElement(icon, {
+            className: ` ${textColor} transition-colors duration-500`,
+          })
+        )}
       </button>
     );
   }
@@ -65,10 +69,14 @@ export default function Button({
       className={`px-6 py-2 border rounded-full ${borderColor} ${baseStyles}`}
     >
       <div className="flex items-center gap-2">
-        {Icon && (
-          <Icon
-            className={`w-4 h-4 ${textColor} transition-colors duration-500`}
-          />
+        {icon && (
+          typeof icon === "string" ? (
+            <img src={icon} alt="icon" className={`w-4 h-4 ${textColor} transition-colors duration-500`} />
+          ) : (
+            React.createElement(icon, {
+              className: ` ${textColor} transition-colors duration-500`,
+            })
+          )
         )}
         <span
           className={`${textColor} text-sm font-bold transition-colors duration-500`}

@@ -1,32 +1,38 @@
 import React from 'react';
+import { Send } from 'lucide-react';
 
 interface QuestionInputProps {
   question: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   textColor: string;
   borderColor: string;
+  onSubmit: (e: React.FormEvent) => void;
 }
 
 export const QuestionInput: React.FC<QuestionInputProps> = ({
   question,
-  onChange,
   textColor,
   borderColor,
+  onSubmit
 }) => {
   return (
-    <div className="w-full max-w-2xl">
-      <label className="block text-md font-medium mb-2" htmlFor="questionInput">
-        Question
-      </label>
-      <input
-        id="questionInput"
-        type="text"
-        value={question}
-        onChange={onChange}
-        className={`w-full max-w-md p-2 border rounded-full ${borderColor} ${textColor} background_1 text-center placeholder-blue-200`}
-        required
-        placeholder="Enter your question here..."
-      />
-    </div>
+    <form onSubmit={onSubmit} className="w-full">
+      <div className={`flex items-center gap-2 p-1.5 rounded-lg border ${borderColor} `}>
+        <input
+          type="text"
+          value={question}
+          readOnly
+          placeholder="Select a question from below..."
+          className={`flex-1 bg-transparent outline-none ${textColor} cursor-default text-sm px-2`}
+        />
+        <button
+          type="submit"
+          disabled={!question}
+          className={`p-1.5 rounded-full transition-colors duration-200 ${textColor} 
+            ${question ? 'hover:bg-blue-600 dark:hover:bg-gray-800' : 'opacity-50 cursor-not-allowed'}`}
+        >
+          <Send size={16} />
+        </button>
+      </div>
+    </form>
   );
 };

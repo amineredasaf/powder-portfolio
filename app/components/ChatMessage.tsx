@@ -1,4 +1,5 @@
 import React from 'react';
+import { MessageSquare } from 'lucide-react';
 
 interface ChatMessageProps {
   message: string;
@@ -6,13 +7,15 @@ interface ChatMessageProps {
   borderColor: string;
 }
 
-export const ChatMessage: React.FC<ChatMessageProps> = ({ message, textColor, borderColor }) => {
+export const ChatMessage: React.FC<ChatMessageProps> = ({
+  message,
+  textColor,
+  borderColor
+}) => {
   return (
-    <div className={`mt-3 p-4 ${textColor} ${borderColor} rounded-md w-full max-w-2xl`}>
-      <div className="flex gap-2">
-        <span className="text-blue-300 text-md shrink-0">Amine Bot:</span>
-        <p className="whitespace-pre-wrap">{message}</p>
-      </div>
+    <div className={`flex items-start gap-2 p-3 rounded-lg border ${borderColor}  mt-3 w-full`}>
+      <MessageSquare className={textColor} size={16} />
+      <p className={`${textColor} text-xs leading-relaxed`}>{message}</p>
     </div>
   );
 };

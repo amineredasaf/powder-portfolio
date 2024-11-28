@@ -23,27 +23,27 @@
   }
 
   .background_1 {
-    background-color: #4a5374;
+    background-color: #122e3a;
   }
 
   .background_2 {
-    background-color: #afeeee;
+    background-color: #dce6e8;
   }
 
   .text-light {
-    color: #afeeee;
+    color: #dce6e8;
   }
 
   .text-dark {
-    color: #4a5374;
+    color: #122e3a;
   }
 
   .border-light {
-    border-color: #afeeee;
+    border-color: #dce6e8;
   }
 
   .border-dark {
-    border-color: #4a5374;
+    border-color: #122e3a;
   }
 
   /* styles.css */
