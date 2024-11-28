@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+}
+
+@layer base {
+  /* remove scroll bar and hidde it */
+  :root {
+    --scrollbar-width: 0;
+    --scrollbar-track: transparent;
+    --scrollbar-thumb: transparent;
+    --scrollbar-thumb-hover: transparent;
+    --scrollbar-thumb-active: transparent;
+  }
+
+  .background_1 {
+    background-color: #4a5374;
+  }
+
+  .background_2 {
+    background-color: #afeeee;
+  }
+
+  .text-light {
+    color: #afeeee;
+  }
+
+  .text-dark {
+    color: #4a5374;
+  }
+
+  .border-light {
+    border-color: #afeeee;
+  }
+
+  .border-dark {
+    border-color: #4a5374;
+  }
+
+  /* styles.css */
+  .chatbot-small-screen {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .chatbot-small-screen {
+      display: block;
+      margin: 0 auto;
+      width: 80%; /* Adjust as needed */
+      text-align: center;
+    }
+  }
+  .break-words {
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap; /* Ensures that text wraps and respects newlines */
+  }
+  
+  .answer-container {
+    max-width: 100%; /* Ensures the container does not exceed the width of its parent */
+    overflow: hidden; /* Prevents overflow */
+  }
+}
