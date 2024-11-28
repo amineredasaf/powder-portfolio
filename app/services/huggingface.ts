@@ -42,7 +42,7 @@ Response:`;
     });
 
     // Clean up the response
-    let cleanResponse = response.generated_text
+    const cleanResponse = response.generated_text
       .replace(prompt, "") // Remove the prompt
       .replace("Response:", "") // Remove the Response: prefix
       .trim();

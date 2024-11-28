@@ -1,5 +1,6 @@
 import React from 'react';
 import { ExternalLink } from 'lucide-react';
+import Image from 'next/image';
 
 interface ExperienceBlockProps {
   title: string;
@@ -41,10 +42,12 @@ export function ExperienceBlock({
           <p className="text-sm text-gray-500 mt-1">{period}</p>
         </div>
         {logo && (
-          <img 
+          <Image 
             src={logo} 
             alt={`${company} logo`} 
-            className="w-12 h-12 object-contain"
+            width={48}
+            height={48}
+            className="object-contain"
           />
         )}
       </div>

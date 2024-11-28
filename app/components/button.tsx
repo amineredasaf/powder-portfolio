@@ -1,5 +1,6 @@
 'use client'
 import React, { ReactNode } from "react";
+import Image from 'next/image'; // Import Image from next/image
 import { getTextColor } from "../utils/colorUtils";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 import { LucideIcon } from "lucide-react";
@@ -52,7 +53,7 @@ export default function Button({
         className={`p-2 border rounded-full ${borderColor} ${baseStyles} ${textColor}`}
       >
         {typeof icon === "string" ? (
-          <img src={icon} alt="icon" className={`w-5 h-5 ${textColor} ${baseStyles} transition-colors duration-500`} />
+          <Image src={icon} alt="icon" width={20} height={20} className={`w-5 h-5 ${textColor} ${baseStyles} transition-colors duration-500`} />
         ) : (
           React.createElement(icon, {
             className: ` ${textColor} transition-colors duration-500`,
@@ -71,7 +72,7 @@ export default function Button({
       <div className="flex items-center gap-2">
         {icon && (
           typeof icon === "string" ? (
-            <img src={icon} alt="icon" className={`w-4 h-4 ${textColor} transition-colors duration-500`} />
+            <Image src={icon} alt="icon" width={16} height={16} className={`w-4 h-4 ${textColor} transition-colors duration-500`} />
           ) : (
             React.createElement(icon, {
               className: ` ${textColor} transition-colors duration-500`,

@@ -49,7 +49,7 @@ function App() {
           <p className="text-blue-50 sm:text-[100%]">
             Lorem Ipsum is simply dummy text of the printing and typesetting
             <br />
-            industry. Lorem Ipsum has been the industry's standard dummy text
+            industry. Lorem Ipsum has been the industry&apos;s standard dummy text
             <br />
             ever since the 1500s,
           </p>

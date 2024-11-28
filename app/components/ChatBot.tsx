@@ -54,7 +54,8 @@ export const ChatBot: React.FC = () => {
 
   const handleSuggestedQuestionClick = (selectedQuestion: string) => {
     setQuestion(selectedQuestion);
-    handleSubmit(new Event('submit') as any);
+    const syntheticEvent = { preventDefault: () => {} } as React.FormEvent;
+    handleSubmit(syntheticEvent);
   };
 
   return (

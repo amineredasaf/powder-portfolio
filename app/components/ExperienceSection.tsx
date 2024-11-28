@@ -20,7 +20,7 @@ const experiences: Experience[] = [
     period: "2023 - 2024",
     description: "Developed and maintained a suite of automated tests, checking for regressions and ensuring the quality of the product.",
     stack: ["React", "TypeScript", "Jest", "Python"],
-    logo: "https://media.licdn.com/dms/image/v2/C4E0BAQGQ2vsSFYiCdg/company-logo_200_200/company-logo_200_200/0/1676872502124/ora_technologies_sas_logo?e=2147483647&v=beta&t=yqoe_kqREimIgdT3TLo7nH-lmWSk1dVqDBqXiGeW5Xs",
+    logo: "https://media.licdn.com/dms/image/v2/D4E22AQF0LHhFZEzSrA/feedshare-shrink_800/feedshare-shrink_800/0/1727893012136?e=2147483647&v=beta&t=7C7TpIgK0vHYdc9Mx02M9szO-UbN4OWhDSiSg45NyD4",
     link: "https://ora.ma/"
   },
   {

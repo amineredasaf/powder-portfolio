@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, FormEvent } from 'react';
 import { HfInference } from '@huggingface/inference';
 import { Send } from 'lucide-react';
 import Button from './button';
-import { getTextColor } from '../utils/colorUtils.tsx';
+import { getTextColor } from '../utils/colorUtils';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import dotenv from 'dotenv';
 
