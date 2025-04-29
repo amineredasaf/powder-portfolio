@@ -4,7 +4,6 @@ import Button from './button';
 export default function ParentComponent() {
   return (
     <div>
-      {/* Other sections */}
       <section id="section1">
         <h1>Section 1</h1>
         <Button nextSectionId="section2">Go to Section 2</Button>
@@ -15,7 +14,6 @@ export default function ParentComponent() {
       </section>
       <section id="section3">
         <h1>Section 3</h1>
-        {/* No button here */}
       </section>
     </div>
   );

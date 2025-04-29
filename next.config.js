@@ -1,7 +1,15 @@
-module.exports = {
-  // ...existing code...
-  images: {
-    domains: ['media.licdn.com', 'images.unsplash.com'],
-  },
-  // ...existing code...
-};
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+    images: {
+      unoptimized: true,
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'i.scdn.co',
+          pathname: '/image/**',
+        },
+      ],
+    },
+  };
+  
+  module.exports = nextConfig;

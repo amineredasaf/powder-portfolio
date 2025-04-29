@@ -70,4 +70,8 @@
     max-width: 100%; /* Ensures the container does not exceed the width of its parent */
     overflow: hidden; /* Prevents overflow */
   }
+
+  div::-webkit-scrollbar {
+    display: none;
+  }
 }

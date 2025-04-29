@@ -1,12 +1,14 @@
 "use client";
 import Navbar from "./components/Navbar";
 import Button from "./components/button";
-import ChatBot from "./components/ChatBot";
+import Chat from "./components/ChatBot";
 import ExperienceSection from "./components/ExperienceSection";
+import ContactSection from "./components/ContactSection";
 
 import FullPageSection from "./components/full-page-section";
 import { getTextColor } from "./utils/colorUtils";
 import { Github, Linkedin, Download } from "lucide-react";
+import ProjectsSection from "./components/ProjectsSection";
 
 function App() {
   return (
@@ -30,7 +32,7 @@ function App() {
           ></Button>
           <Button
             nextSectionId="Download"
-            link="https://amineredasaf.com"
+            link="https://drive.google.com/file/d/1fODcGHdLk3dzLjy5D3BY2Tlj5BHsacN4/view?usp=sharing"
             icon={Download}
             className=""
           ></Button>
@@ -38,27 +40,40 @@ function App() {
       </div>
 
       <FullPageSection
-        id="hero"
+        id="Welcome"
         bgColor="background_1"
         textColor={getTextColor("bg-indigo-900")}
       >
         <div className="absolute lg:left-[14%]  sm:left-[10%] space-y-0 text-light ">
           <p className="lg:text-[20px] sm:text-[100%]">Hi, My Name is</p>
-          <h1 className="lg:text-[60px] sm:text-[200%] text-blue-200">Reda Amine Saf.</h1>
-          <p className="lg:text-[25px] sm:text-[100%] text-blue-100">Frontend Developer</p>
+          <h1 className="lg:text-[60px] sm:text-[200%] text-blue-200">
+            Reda Amine Saf.
+          </h1>
+          <p className="lg:text-[25px] sm:text-[100%] text-blue-100">
+            Full stack developer
+          </p>
           <p className="text-blue-50 sm:text-[100%]">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
+            🛠️ What I do:
             <br />
-            industry. Lorem Ipsum has been the industry&apos;s standard dummy text
+            - Full stack development (Node.js, NestJS, Next.js, Flutter)
             <br />
-            ever since the 1500s,
+            - Work with PostgreSQL, Kafka, C/C++, Python
+            <br />
+            - Build and deploy with Docker
+            <br />
+            - Tackle networking projects
+            <br />
+            - Explore and build startup ideas
+            <br />- Learn fast and adapt even faster
           </p>
           <div className=" md:hidden mt-4 flex justify-center text-center">
-            <ChatBot />
+            {/* <ChatBot /> */}
+            <Chat />
           </div>
         </div>
         <div className="hidden md:block absolute right-[10%]">
-        <ChatBot />
+          {/* <ChatBot /> */}
+          <Chat />
         </div>
       </FullPageSection>
 
@@ -73,13 +88,22 @@ function App() {
       </FullPageSection>
 
       <FullPageSection
-        id="skills"
+        id="Projects"
         bgColor="background_1"
         textColor={getTextColor("bg-purple-900")}
       >
         <div className="text-center space-y-4 text-light">
-          <h2 className="text-3xl font-bold">Skill</h2>
-          <p className="text-lg">thedestroies of the world</p>
+          <ProjectsSection />
+        </div>
+      </FullPageSection>
+
+      <FullPageSection
+        id="Contact"
+        bgColor="background_2"
+        textColor={getTextColor("bg-emerald-100")}
+      >
+        <div className="text-center space-y-4">
+          <ContactSection />
         </div>
       </FullPageSection>
     </main>

@@ -9,8 +9,8 @@ const JuraFont = Jura({
 });
 
 export const metadata: Metadata = {
-  title: 'My Portfolio',
-  description: 'My Portfolio',
+  title: 'Amine Reda SAF - Portfolio',
+  description: 'Amine Reda SAF - Portfolio Website',
   openGraph: {
     type: 'website',
     locale: 'en_US',

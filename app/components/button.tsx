@@ -1,6 +1,6 @@
 'use client'
 import React, { ReactNode } from "react";
-import Image from 'next/image'; // Import Image from next/image
+import Image from 'next/image'; 
 import { getTextColor } from "../utils/colorUtils";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 import { LucideIcon } from "lucide-react";
@@ -8,7 +8,7 @@ import { LucideIcon } from "lucide-react";
 interface ButtonProps {
   children?: ReactNode;
   nextSectionId?: string;
-  icon?: LucideIcon | string; // Updated to accept string for local path icons
+  icon?: LucideIcon | string;
   link?: string;
   className?: string;
 }
@@ -45,7 +45,6 @@ export default function Button({
     ${className}
   `;
 
-  // Icon-only button (for links)
   if (icon && !children) {
     return (
       <button
@@ -63,11 +62,10 @@ export default function Button({
     );
   }
 
-  // Text button (for section navigation)
   return (
     <button
       onClick={handleClick}
-      className={`px-6 py-2 border rounded-full ${borderColor} ${baseStyles}`}
+      className={`px-6 py-2 border rounded-sm ${borderColor} ${baseStyles}`}
     >
       <div className="flex items-center gap-2">
         {icon && (

@@ -26,25 +26,35 @@ const experiences: Experience[] = [
   {
     id: 2,
     title: "Full Stack Developer",
-    company: "StartupX",
-    period: "2020 - 2022",
-    description: "Architected and built scalable microservices, handling millions of daily requests while maintaining 99.9% uptime.",
-    stack: ["Node.js", "React", "PostgreSQL", "Docker"],
-    logo: "https://images.unsplash.com/photo-1489389944381-3471b5b30f04?w=64&h=64&fit=crop&auto=format"
+    company: "Wovoiture.",
+    period: "2024 - 2024",
+    description: "Helped to develop a mobile application that allows users to book and manage their car rentals.",
+    stack: ["Node.js", "Flutter", "PostgreSQL", "Docker"],
+    logo: "https://media.licdn.com/dms/image/v2/D4E0BAQEbfFXZwutELg/company-logo_200_200/company-logo_200_200/0/1708479880212/wovoiture_logo?e=2147483647&v=beta&t=xLp42Cu5w73wLDtSZBkUht4kPqXER8ycTRCtL413RsE",
+    link: "https://wovoiture.ma/"
   },
-  
+  {
+    id: 3,
+    title: "Cofounder And Full Stack Developer",
+    company: "Yonotify.",
+    period: "2024 - present",
+    description: "Loading...",
+    stack: ["Node.js", "Flutter", "Nextjs", "PostgreSQL", "Docker"],
+    logo: "https://www.yonotify.com/Ylogo.svg",
+    link: "https://yonotify.com/",
+  },
 ];
 
 export default function ExperienceSection() {
   return (
-    <section className="py-16 ">
+    <section className="pt-24 pb-40 sm:pb-56 mt-16 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold ">Experiences</h2>
           <p className="mt-4 text-lg ">My professional journey and achievements</p>
         </div>
         
-        <div className="grid gap-6 md:grid-cols-2 lg:gap-8">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
           {experiences.map((experience) => (
             <ExperienceBlock
               key={experience.id}
