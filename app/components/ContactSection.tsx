@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import Link from 'next/link';
-import { FaEnvelope, FaGithub, FaTwitter, FaLinkedin, FaCopy, FaCheck } from 'react-icons/fa';
+import { FaEnvelope, FaCopy, FaCheck } from 'react-icons/fa';
 
 const ContactSection = () => {
   const email = 'rsaf.works@gmail.com';
@@ -19,7 +18,7 @@ const ContactSection = () => {
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold">Get In Touch</h2>
           <p className="mt-4 text-sm md:text-base text-light/70 max-w-xl mx-auto">
-            I'm currently open to new opportunities and collaborations. 
+            I&apos;m currently open to new opportunities and collaborations. 
             If you have a project in mind or just want to connect, feel free to reach out!
           </p>
         </div>
