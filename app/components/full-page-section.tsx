@@ -18,9 +18,9 @@ export default function FullPageSection({
       id={id}
       data-section
       data-bg-color={bgColor}
-      className={`h-screen w-full snap-start flex flex-col items-center justify-center ${bgColor} ${textColor} transition-colors duration-500 ease-in-out`}
+      className={`h-screen w-full snap-start flex flex-col items-center justify-center ${bgColor} ${textColor} transition-colors duration-500 ease-in-out overflow-x-hidden`}
     >
-      {children}
+        {children}
     </section>
   );
 }

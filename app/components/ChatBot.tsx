@@ -1,87 +1,130 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { getTextColor } from "../utils/colorUtils";
-import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
-import { ChatMessage } from "./ChatMessage";
-import { QuestionInput } from "./QuestionInput";
+"use client";
+import { useState, KeyboardEvent, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import "./chatStyles.css";
 
-const ChatBot = () => {
-  const activeBgColor = useIntersectionObserver();
-  const textColor = getTextColor(activeBgColor);
-  const borderColor = textColor === "text-light" ? "border-light" : "border-dark";
-  const [question, setQuestion] = useState("");
-  const [answer, setAnswer] = useState("");
+export default function Chat() {
+  const [input, setInput] = useState("");
+  const [messages, setMessages] = useState<
+    { from: "user" | "assistant"; text: string }[]
+  >([]);
   const [loading, setLoading] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
 
-  let context = "my name is reda amine saf im 24 years old.\r";
-  context += "I am a full stack developer with expertise in React, TypeScript, and Node.js.\r";
-  context += "I have one two year of exprience building web applications.\r";
-  context += "I am passionate about creating clean, efficient, and user-friendly interfaces.\r";
-  context += "I graduated student at 1337 school and UM6P\r";
-  context += "I have worked on projects for companies like Ora and wovo\r";
-  context += "I am currently looking for new opportunities in full-stack development\r";
-  context += "my email is rsaf.works@gmail.com\r";
-  context += "i cant share my phone number due to privacy reasons\r";
-  context += "i love cats\r";
-  context += "my country is morocco\r";
-  context += "my city is sometimes tangier, khouribga or casablanca\r";
-  context += "i am a big fan of the twenty one pilots band\r";
-  context += "my linkedin is https://www.linkedin.com/in/amineredasaf\r";
-  context += "my github is https://github.com/amineredasaf";
+  const scrollToBottom = () => {
+    if (chatContainerRef.current) {
+      const scrollHeight = chatContainerRef.current.scrollHeight;
+      chatContainerRef.current.scrollTop = scrollHeight;
+    }
+  };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages, loading]);
+
+  const sendMessage = async () => {
+    const trimmed = input.trim();
+    if (!trimmed || loading) return;
+    setMessages((msgs) => [...msgs, { from: "user", text: trimmed }]);
+    setInput("");
     setLoading(true);
-
     try {
-      const response = await axios.post(
-        "https://api-inference.huggingface.co/models/deepset/roberta-base-squad2",
-        {
-          inputs: {
-            question,
-            context,
-          },
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_HF_API_KEY}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (response.status !== 200) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      setAnswer(response.data.answer);
-    } catch (error) {
-      console.error("Error:", error);
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: trimmed }),
+      });
+      const data = await response.json();
+      setMessages((msgs) => [
+        ...msgs,
+        { from: "assistant", text: data.reply },
+      ]);
+    } catch {
+      setMessages((msgs) => [
+        ...msgs,
+        { from: "assistant", text: "Sorry, something went wrong. Please try again." },
+      ]);
     } finally {
       setLoading(false);
     }
   };
 
-  return (
-    <div className="p-4 sm:p-6 md:p-8 lg:p-10 flex flex-col items-center w-full">
-      <form onSubmit={handleSubmit} className="space-y-4 w-[400px] flex flex-col items-center ">
-        <QuestionInput
-          question={question}
-          onChange={(e) => setQuestion(e.target.value)}
-          textColor={textColor}
-          borderColor={borderColor}
-        />
-      </form>
+  const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  };
 
-      {answer && (
-        <ChatMessage
-          message={answer}
-          textColor={textColor}
-          borderColor={borderColor}
+  return (
+    <div className="w-full sm:w-[400px] sm:h-[350px] md:w-[400px] h-[400px] mx-auto my-4 border border-blue-200 flex flex-col">
+      <div 
+        ref={chatContainerRef}
+        className="flex-1 h-[350px] overflow-y-auto px-3 py-2 space-y-2 mb-2 flex flex-col custom-scrollbar"
+      >
+        <AnimatePresence>
+          {messages.length === 0 && (
+            <div className="text-center text-blue-200 mt-3 text-sm">
+              Send a message to start chatting
+            </div>
+          )}
+          {messages.map((m, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.18 }}
+              className={`max-w-[85%] break-words text-sm ${
+                m.from === "user"
+                  ? "ml-auto bg-blue-200 text-black"
+                  : "mr-auto bg-white border text-gray-900"
+              } rounded-xl px-3 py-1.5 shadow-sm`}
+            >
+              {m.text}
+            </motion.div>
+          ))}
+          {loading && (
+            <motion.div
+              key="typing"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              className="mr-auto bg-white rounded-xl border px-3 py-1.5 text-gray-500 max-w-[85%] shadow-sm text-sm"
+            >
+              <div className="flex items-center">
+                <span className="mr-2">Assistant is typing</span>
+                <span className="flex">
+                  <span className="animate-bounce mx-[1px] h-1 w-1 bg-gray-500 rounded-full"></span>
+                  <span className="animate-bounce mx-[1px] h-1 w-1 bg-gray-500 rounded-full" style={{animationDelay: "0.2s"}}></span>
+                  <span className="animate-bounce mx-[1px] h-1 w-1 bg-gray-500 rounded-full" style={{animationDelay: "0.4s"}}></span>
+                </span>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <div ref={messagesEndRef} />
+      </div>
+
+      <div className="h-[80px] px-3 py-2 rounded-b-lg flex gap-2 items-start">
+        <textarea
+          className="w-full border border-gray-300 p-2 text-black rounded-lg resize-none focus:ring-2 focus:ring-blue-200 focus:border-blue-200 outline-none transition-all min-h-[50px] max-h-[50px] text-sm"
+          rows={2}
+          placeholder="Type your message..."
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={handleKeyDown}
+          disabled={loading}
         />
-      )}
+        <button
+          onClick={sendMessage}
+          disabled={loading || !input.trim()}
+          className="bg-blue-200 hover:bg-blue-500 text-black px-3 py-1.5 rounded-lg font-medium transition disabled:cursor-not-allowed h-[50px]"
+        >
+          Send
+        </button>
+      </div>
     </div>
   );
-};
-
-export default ChatBot;
+}
